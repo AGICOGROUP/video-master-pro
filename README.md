@@ -3,7 +3,7 @@
 用 FFmpeg + Python 把原始拍摄素材剪成可交付成片。无浏览器、无 Node、无付费素材。
 横屏 16:9 与竖屏 9:16 共用同一套脚本，中英双语字幕同字号，配音与 BGM 全部可商用。
 
-内容只有一个技能：`ffmpeg-film-pipeline`。
+内容只有一个技能：`video-master-pro`。
 
 ---
 
@@ -14,14 +14,14 @@
 ```powershell
 mkdir C:\video -Force; cd C:\video
 git clone <仓库地址> .
-python .\ffmpeg-film-pipeline\scripts\firstrun.py --check
+python .\video-master-pro\scripts\firstrun.py --check
 ```
 
 `firstrun.py --check` 只检查不安装，会逐项报告 ffmpeg / Python / numpy / Pillow / edge-tts / 字体，
 并给出缺项的安装命令。确认无误后去掉 `--check` 会自动装好 Python 依赖：
 
 ```powershell
-python .\ffmpeg-film-pipeline\scripts\firstrun.py
+python .\video-master-pro\scripts\firstrun.py
 ```
 
 看到 `READY` 就说明这台机器可以出片了。
@@ -31,7 +31,7 @@ python .\ffmpeg-film-pipeline\scripts\firstrun.py
 ## 做第一部片
 
 ```powershell
-$S = ".\ffmpeg-film-pipeline\scripts"
+$S = ".\video-master-pro\scripts"
 $P = "--src","D:\footage","--work","D:\work","--out","D:\out"
 
 python $S\newfilm.py @P --proj film01 --shots 8 --duration 40 --aspect 16:9 --title "Film 01"
@@ -75,7 +75,7 @@ python $S\verify.py "D:\out\film01_16x9.mp4" @P
 ## 结构
 
 ```
-ffmpeg-film-pipeline/
+video-master-pro/
   SKILL.md              完整说明（流程、参数、spec 字段、验收）
   SKILL.patch.md        版本改动记录
   references/           调色配方、坑位清单

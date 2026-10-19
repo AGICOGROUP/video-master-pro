@@ -1,5 +1,5 @@
 ---
-name: ffmpeg-film-pipeline
+name: video-master-pro
 description: The house pipeline for cutting a broadcast-look product or brand film straight out of raw factory footage with FFmpeg + Python — no browser, no Remotion, no HyperFrames. Use when making a 30-90 s narrated film: industrial/equipment promos, factory or product showcase, bilingual (CN/EN) subtitled pieces, or when a previous browser-render pipeline failed and the film still has to ship. Portable by default: every path resolves from a flag or an environment variable, fonts are found by alias on Windows/macOS/Linux, both 16:9 and 9:16 come out of the same scripts. Covers scaffolding a project, shot planning, grade and aspect-safe cutting, PIL type overlays with a gradient scrim, edge-tts voiceover, procedurally synthesised royalty-free BGM, per-shot camera drift, progress rail, concat/mux, and the verify gate.
 ---
 
