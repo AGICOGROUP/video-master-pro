@@ -1,0 +1,10 @@
+﻿__pycache__/
+*.pyc
+work/
+source/
+out/
+_qa/
+*.mp4
+*.wav
+*.png
+.DS_Store
