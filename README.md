@@ -7,24 +7,33 @@
 
 ---
 
-## 首次使用（团队成员照抄这一段）
-
-在 PowerShell 里逐行执行（第一行换成你的工作目录）：
+## 首次使用（复制这一行即可）
 
 ```powershell
-mkdir C:\video -Force; cd C:\video
-git clone <仓库地址> .
-python .\video-master-pro\scripts\firstrun.py --check
+git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1
 ```
 
-`firstrun.py --check` 只检查不安装，会逐项报告 ffmpeg / Python / numpy / Pillow / edge-tts / 字体，
-并给出缺项的安装命令。确认无误后去掉 `--check` 会自动装好 Python 依赖：
+这一行做三件事：拉取仓库 → 安装缺失的 Python 包（numpy / Pillow / edge-tts）→ 逐项检查
+ffmpeg、ffprobe、libx264、字体。看到 `READY` 就能出片；看到 `NOT READY`，按上面 FAIL 行的
+提示装好后重新运行这一行即可。
+
+**已装过的机器**，同样运行这一行即可升级（脚本会先 `git pull`）：
 
 ```powershell
-python .\video-master-pro\scripts\firstrun.py
+powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1
 ```
 
-看到 `READY` 就说明这台机器可以出片了。
+只想检查、不安装：
+
+```powershell
+git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1 -CheckOnly
+```
+
+有素材目录时可以一次带上，检查会更完整（会验证素材可读）：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1 -Src "D:\footage" -Work "D:\work" -Out "D:\out"
+```
 
 ---
 
