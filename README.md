@@ -10,7 +10,7 @@
 ## 首次使用（复制这一行即可）
 
 ```powershell
-git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1
+if (Test-Path C:\vmpro) { cd C:\vmpro; git pull } else { git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro }; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1
 ```
 
 这一行做三件事：拉取仓库 → 安装缺失的 Python 包（numpy / Pillow / edge-tts）→ 逐项检查
@@ -26,7 +26,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1
 只想检查、不安装：
 
 ```powershell
-git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1 -CheckOnly
+if (Test-Path C:\vmpro) { cd C:\vmpro; git pull } else { git clone https://github.com/AGICOGROUP/video-master-pro.git C:\vmpro }; powershell -NoProfile -ExecutionPolicy Bypass -File C:\vmpro\install.ps1 -CheckOnly
 ```
 
 有素材目录时可以一次带上，检查会更完整（会验证素材可读）：
