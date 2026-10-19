@@ -58,12 +58,34 @@ python $S\verify.py "D:\out\film01_16x9.mp4" @P
 
 ---
 
+## 给智能体的指令（可直接复制给 AI）
+
+```
+安装这个仓库并准备好环境：
+https://github.com/AGICOGROUP/video-master-pro.git
+
+用 git clone 拉到 C:\vmpro，然后运行 C:\vmpro\install.ps1，
+把终端最后几行发我，我要看到 READY。
+装完以后按 C:\vmpro\video-master-pro\SKILL.md 执行。
+```
+
+AI 执行时必须遵守：
+
+1. 先确认 `C:\vmpro\video-master-pro\SKILL.md` 存在；不存在就 clone。
+2. 跑 `C:\vmpro\install.ps1`，把终端真实输出贴给用户，**禁止凭印象说"已就绪"**。
+3. 输出不是 `READY` 时，不得处理素材、不得出片，先把 FAIL 行和修复命令给用户。
+4. 出片前必读 `SKILL.md`，按其中的四步流程与硬规则走，不自行发明参数。
+
+---
+
 ## 依赖
 
-硬依赖（缺一不可）：
+
+硬依赖（缺一不可）。前两项必须在跑安装脚本之前就有，脚本不会替你装系统软件：
 
 | 依赖 | 检查 |
 |---|---|
+| git（拉取与更新仓库） | `git --version` |
 | ffmpeg / ffprobe（含 libx264、aac） | `ffmpeg -version` |
 | Python ≥ 3.10 | `python -V` |
 | numpy、Pillow、edge-tts ≥ 7.3.1 | `firstrun.py` 自动装 |
