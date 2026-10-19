@@ -11,6 +11,7 @@ Soft requirements (only for optional paths): edge-tts (voiceover), node/npx
 """
 import importlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -82,10 +83,19 @@ def main():
         add(tool, bool(exe), v or f"not on PATH — optional, {why}",
             "winget install OpenJS.NodeJS.LTS / install uv from astral.sh", hard=False)
 
+    # Footage is only blocking when the user actually pointed at a folder.
+    # A bare environment check must not fail just because no clips were given yet.
     src = paths.P.src
     exists = src.exists()
-    add("footage:src", exists, str(src) if exists else f"{src} (not found)",
-        "pass --src <folder with the camera originals>, or set FILM_SRC")
+    asked = "--src" in sys.argv or bool(os.environ.get("FILM_SRC"))
+    if exists:
+        add("footage:src", True, str(src))
+    elif asked:
+        add("footage:src", False, f"{src} (not found)",
+            "pass --src <folder with the camera originals>, or set FILM_SRC")
+    else:
+        add("footage:src", False, "not provided yet (add --src when you have clips)",
+            "pass --src <folder with the camera originals>, or set FILM_SRC", hard=False)
     if exists:
         media = [p for p in src.rglob("*") if p.suffix.lower() in (".mp4", ".mov", ".m4v", ".avi")]
         add("footage:files", len(media) > 0, f"{len(media)} video files",
